@@ -1,3 +1,6 @@
+// Load environment variables.
+require("dotenv").config();
+
 import Web3 from 'web3';
 
 const network = process.env.RINKEBY_ENDPOINT;
@@ -8,9 +11,7 @@ if (typeof window !== 'undefined' && typeof window.ethereum !== 'undefined') {
   window.ethereum.request({ method: 'eth_requestAccounts' });
   web3 = new Web3(window.ethereum);
 } else {
-  const provider = new Web3.providers.HttpProvider(
-    'https://rinkeby.infura.io/v3/ee54e052bbe248dbbf7ca4811569b981',
-  );
+  const provider = new Web3.providers.HttpProvider(network);
   web3 = new Web3(provider);
 }
 
